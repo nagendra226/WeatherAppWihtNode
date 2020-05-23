@@ -1,0 +1,75 @@
+1. In this module we will learn about HTML, CSS, Client Side Java Script 
+2. Express node module
+3. How the users can interact with the our website.
+
+How to use Express?
+    npm i express 
+    npm express --version
+    const express = require('express');
+    const app = express();
+
+To use CSS and static templates you need to create
+    public folder CSS folder Images folder
+    const publicPath = path.join(__dirname, '../public/');
+    app.use(express.static(publicPath));
+
+
+HBS is like EJS - we need to store all the hbs templates in the views
+    npm i hbs
+    app.set('view engine', 'hbs');
+    app.set('views', path.join(__dirname, "../views/"));
+
+To render hbs template you need to use
+     app.get("", (req, res) => {
+     res.render('index');
+    });
+
+Relative Path 
+./CSS/styles.css
+
+Absoulte Path
+/Images/favicon.ico
+
+
+Get
+When some one wants to get something from our websit we use get request.
+    
+    //Root route req =request res = response
+    app.get("",(req,res) => {
+        res.send("Hello World!");
+    });
+
+    We dont have any other routes setup we get 
+    Cannot GET /about as an error
+
+     /* //root route
+    app.get("", (req, res) => {
+        res.sendFile('index.html');
+    });
+    //help route
+    app.get("/help", (req, res) => {
+        res.sendFile(publicPath+'/help.html');
+    });
+    //about route
+    app.get("/about", (req, res) => {
+        res.send(`about.html`);
+    });*/
+
+
+Post
+
+Listen
+
+    app.listen(process.env.PORT || 3000, function () {
+        console.log(`Server started at the port ${process.env.PORT || 3000}`);
+    });
+    local development environment port is 3000.
+
+res.send methods
+    res.render hbs templates
+    res.send 
+    res.sendFile
+
+req methods
+    req.query (To get the query string like http://localhost:3000/products?search=games&rating=5 
+                { search: 'games', rating: '5' })
